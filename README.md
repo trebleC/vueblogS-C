@@ -10,12 +10,14 @@
 
 #### 主页博客演示
 
-![](src/assets/img/home.gif)
+![](src/assets/home.png)
 
 
 #### 后台管理演示
-![](src/assets/img/admin.gif)
+![](src/assets/admin.png)
 
+#### 编辑器
+![](src/assets/md.png)
 
 ### 前端工具
 * Vue
