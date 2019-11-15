@@ -174,6 +174,7 @@ import EditorAPi from "@/api/editor";
         date:date,
         title:this.article.title,
         content:this.article.content,
+        html:this.article.html,
         tags:this.dynamicTags,
         style:this.dynamicStyleTags,
         articleType:{type:this.selectResult,url:this.mdDialogMap.url},
@@ -215,6 +216,7 @@ import EditorAPi from "@/api/editor";
           date:date,
           title:this.article.title,
           content:this.article.content,
+          html:this.article.html,
           tags:this.dynamicTags,
           style:this.dynamicStyleTags,
           articleType:{type:this.selectResult,url:this.mdDialogMap.url},
@@ -223,7 +225,7 @@ import EditorAPi from "@/api/editor";
       EditorAPi.release(markdownMap).then(response=>{
                 if(response.code==20000&&response.flag){
                     this.$message({
-                      message: '保存成功',
+                      message: '上传成功',
                       type: 'success'
                     });
                     this.$emit('close-dialogStatus', true)

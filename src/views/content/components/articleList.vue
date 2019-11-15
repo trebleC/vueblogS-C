@@ -1,10 +1,10 @@
 <template>
-    <div class="article-list">
+    <div class="article-list" v-loading="listLoading" element-loading-text="Loading">
         <div class="article-list-item" v-for="(item,index) in articleMap" :key="index">
             <div class="list-item-title">
                 <span class="article-list-item-tag">{{item.typeOptions}}</span>
                 <p class="article-list-item-txt ">
-                    <a href="/postedit/102671012" target="_blank" title="编辑">{{item.title}}</a>
+                    <a :href="'/#/editor/Markdown?detail='+item.detail"  title="编辑">{{item.title}}</a>
                 </p>
             </div>
 
@@ -13,11 +13,12 @@
                     <span >{{item.style}}</span>
                     <span >{{item.date}}</span>
                     <span><li class="el-icon-view" ></li>{{item.views}}</span>
-                    <span><li class="el-icon-tickets"></li>{{item.comments}}</span>
+                    <span><li class="el-icon-s-comment"></li>{{item.comments}}</span>
                 </div>
                  <div class="item-info-oper">
-                   <router-link  :to="{path:'/login'}" ><span class="check">查看</span></router-link>
-                   <router-link  :to="{path:'/login'}" ><span class="del">删除</span></router-link>
+                   <router-link  :to="{path:`/articleDetail/${item.detail}`}" ><span class="check">查看</span></router-link>
+                   <router-link  :to="{path:`/editor/Markdown?detail=${item.detail}`}" ><span class="check">编辑</span></router-link>
+                   <a href="javascript:;"  @click="del(item.detail)" title="删除">删除</a>
                  </div>
                 </div>
 
@@ -42,7 +43,8 @@ export default {
         // views: '',
         // comments:'',
         // detail: ''
-        ]
+        ],
+        listLoading:true
         }
     },
     props:{
@@ -54,8 +56,9 @@ export default {
     },
     computed:{
         fetchdata(){
+            this.listLoading=true
             ArticleApi.getArticleList("all").then(response => {
-
+                this.listLoading=false
                 this.articleMap = this.matchStyle(response.data.pillList)
                 console.log(this.articleMap);
             })
@@ -112,6 +115,27 @@ export default {
                 }
             }
             return obj
+        },
+        del(id){
+            ArticleApi.delArticle(id).then(res=>{
+                if(res.code){
+                    this.$message({
+                      message: '删除成功',
+                      type: 'success'
+                    });
+                ArticleApi.getArticleList("all").then(response => {
+
+                this.articleMap = response.data.pillList
+            })
+
+                }
+                else{
+                    this.$message({
+                      message: '删除失败，请重试',
+                      type: 'error'
+                    });
+                }
+            })
         }
     }
 

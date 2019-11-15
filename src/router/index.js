@@ -22,20 +22,22 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
+  {path: '/', redirect:'/home',hidden:true},
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
   { path: '/home', component: () => import('@/views/home/index'), hidden: true},
-  {path: '/articleDetail/:id', component: () => import('@/views/home/indexDetail'), hidden: true},
+  {path: '/articleDetail/:id', component: () => import('@/views/home/indexDetail'), hidden: true,name:'articleDetail'},
 
   {path: '/categories', component: () => import('@/views/home/indexCategories'), hidden: true},
-  {path: '/archives', component: () => import('@/views/home/indexDetail'), hidden: true},
-  {path: '/tags', component: () => import('@/views/home/indexDetail'), hidden: true},
+  {path: '/archives', component: () => import('@/views/home/indexArchives'), hidden: true},
+  {path: '/tags', component: () => import('@/views/home/indexTags'), hidden: true},
+  {path: '/search', component: () => import('@/views/home/indexSearch'), hidden: true},
   
-
+  //const whiteList = ['/login','/home','/articleDetail/:id','/categories','/archives','/tags'] // 不重定向白名单
   {
-    path: '/',
+    path: '/admin',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/admin/dashboard',
     name: 'Dashboard',
     hidden: true,
     children: [{
@@ -71,120 +73,26 @@ export const constantRouterMap = [
       {
         path: 'commentlist',
         name: 'Comment',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/content/index'),
         meta: { title: '评论管理', icon: 'tree' }
       },
       {
         path: 'classifylist',
         name: 'Classify',
-        component: () => import('@/views/tree/index'),
+        component: () => import('@/views/content/index'),
         meta: { title: '分类专栏', icon: 'tree' }
       },
     ]
   },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: '基本信息管理', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '城市管理', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '标签管理', icon: 'tree' }
-      }
-    ]
-  },
 
-  {
-    path: '/gathering',
-    component: Layout,
-    name: 'gathering',
-    meta: { title: '活动管理', icon: 'example' },
-    children: [
-      {
-        path: 'gathering',
-        name: 'gathering',
-        component: () => import('@/views/table/gathering'),
-        meta: { title: '活动管理', icon: 'form' }
-      }
-    ]
-  },
-  {
-    path: '/recruit',
-    component: Layout,
-    name: 'recruit',
-    meta: { title: '招聘管理', icon: 'example' },
-    children: [
-      {
-        path: 'enterprise', 
-        name: 'enterprise', 
-        component: () => import('@/views/table/enterprise'), 
-        meta: { title: '企业管理', icon: 'table'}
-      },
-      {
-        path: 'recruit',
-        name: 'recruit',
-        component: () => import('@/views/table/recruit'),
-        meta: { title: '招聘管理', icon: 'table' }
-      }
-    ]
-  },
-  {
-    path: '/article',
-    component: Layout,
-    name: 'article',
-    meta: { title: '文章管理', icon: 'example' },
-    children: [
-      {
-        path: 'channel',
-        name: 'channel',
-        component: () => import('@/views/table/channel'),
-        meta: { title: '频道管理', icon: 'table' }
-      },
-      {
-        path: 'column',
-        name: 'column',
-        component: () => import('@/views/table/column'),
-        meta: { title: '专栏管理', icon: 'table' }
-      },
-      {
-        path: 'article',
-        name: 'article',
-        component: () => import('@/views/table/article'),
-        meta: { title: '文章管理', icon: 'table' }
-      }
-    ]
-  },
-  {
-    path: '/gathering',
-    component: Layout,
-    name: 'gathering1',
-    meta: { title: 'myinfo', icon: 'example' },
-    children: [
-      {
-        path: 'gathering1',
-        name: 'gathering1',
-        component: () => import('@/views/table/myinfo'),
-        meta: { title: 'myinfo', icon: 'form' }
-      }
-    ]
-  },
+
 
 
   {
     path: '/editor',
     component: Layout,
     name: 'editor',
-    meta: { title: '编辑器', icon: 'edit' },
+    meta: { title: '编辑器', icon: 'form' },
     children: [
       {
         path: 'Markdown',

@@ -35,7 +35,7 @@
 import EditorAPi from "@/api/editor"
 
 import tinymce from 'tinymce/tinymce'
-//import 'tinymce/themes/modern/theme'
+
 import 'tinymce/themes/silver/theme'
 import Editor from '@tinymce/tinymce-vue'
 import 'tinymce/plugins/image'

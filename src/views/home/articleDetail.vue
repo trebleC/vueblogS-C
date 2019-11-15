@@ -4,18 +4,19 @@
       <div class="article_title article_detail_title">{{ article.title }}</div>
       <div class="article_info">
         <span class="article_info_date">发表于：{{ article.date }}</span>
-        <span class="article_info_label">标签：
-        <span v-if="0">未分类</span>
-        <el-tag v-else class="tag_margin" type="primary">{{ tag }}</el-tag>
+        <span class="article_info_label" v-if="article.tag !== undefined && article.tag.length > 0">标签
+        <el-tag  class="tag_margin" type="primary" v-for="tag in article.tag" @click="pushTag(tag)">{{ tag }}</el-tag>
         </span>
       </div>
       <div class="article_detail_content" v-html="compiledMarkdown()"></div>
+      <comment :comments="comment"></comment>
     </div>
   </div>
 </template>
 
 <script>
 import ArticleApi from '@/api/article'
+import comment from '@/views/home/components/comment'
   //import marked from 'marked'
   //import highlight from 'highlight.js'
   //import '../assets/atom-one-light.css'
@@ -26,16 +27,24 @@ import ArticleApi from '@/api/article'
   // })
   export default {
     name: 'articleDetail',
+    components:{
+      comment
+    },
     data() {
       return {
+        comment:[],
         article: {}
-        ,tag:'转载'
       }
     },
-    mounted: function () {
+    created: function () {
       ArticleApi.getSingleArticle(this.$route.params.id).then(response => {
                 console.log(response.data)
                 this.article = response.data
+                
+            })
+      ArticleApi.getComment(this.$route.params.id).then(response => {
+                console.log(response.data)
+                this.comment = response.data
                 
             })
     },
@@ -43,7 +52,11 @@ import ArticleApi from '@/api/article'
       compiledMarkdown: function () {
        // return marked(this.article.content || '', {sanitize: true})
        return this.article.content
-      }
+      },
+      pushTag(tag){
+        this.$router.push(`/tags?tag=${tag}`)
+
+    }
     }
   }
 </script>

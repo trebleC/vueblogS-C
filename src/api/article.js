@@ -25,7 +25,20 @@ export default {
         url:`/articleList/${style}`,
         method:'get'
       })
+    },
+    getComment(id){
+      return request({
+        url:`/${group_name}/comment/${id}`,
+        method:'get'
+      })
+    },
+    delArticle(id){
+      return request({
+        url:`/${group_name}/del/${id}`,
+        method:'post'
+      })
     }
+
   // getList() {
   //   return request({
   //     url: `/${group_name}/${api_name}`,

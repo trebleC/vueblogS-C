@@ -1,8 +1,8 @@
 <template>
   <div id="left_menu">
     <div class="menu_name">
-      <h1>ChaoHang'S NOTES</h1>
-      <h5>不如吃茶去</h5>
+      <h1>TrebleC's Blog</h1>
+      <h5>妳可能未必不喜歡我</h5>
     </div>
     <nav>
       <ul>
@@ -26,7 +26,7 @@
             <span>标签</span>
           </li>
         </router-link>
-        <router-link to="/home">
+        <router-link to="/search">
           <li class="nav">
             <span>搜索</span>
           </li>
@@ -35,12 +35,12 @@
     </nav>
     <div class="info">
       <img src="../../assets/head.jpg" alt="head">
-      <div class="info_name">CHAOHANG</div>
+      <div class="info_name">TrebleC</div>
       <div class="archive">
         <ul>
           <router-link to="/article">
             <li>
-              <span class="archive_count">{{ articleNumber }}</span>
+              <span class="archive_count">11{{ articleNumber }}</span>
               <span class="archive_name">日志</span>
             </li>
           </router-link>
@@ -48,23 +48,23 @@
       </div>
       <ul class="communication">
         <li class="communication_item">
-          <a href="#">
+          <a href="https://github.com/trebleC">
             <span>GitHub</span>
           </a>
         </li>
         <li class="communication_item">
-          <a href="#">
-            <span>GitHub</span>
+          <a href="https://weibo.com/p/1006053591355593" target="_blank">
+            <span>Weibo</span>
           </a>
         </li>
         <li class="communication_item">
           <a href="#">
-            <span>GitHub</span>
+            <span>Bilibili</span>
           </a>
         </li>
         <li class="communication_item">
           <a href="#">
-            <span>GitHub</span>
+            <span>INS</span>
           </a>
         </li>
       </ul>
@@ -96,8 +96,9 @@
     margin-right: 20px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 200px) {
     #left_menu {
+      /*767px*/
       display: none;
     }
   }

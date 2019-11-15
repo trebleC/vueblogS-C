@@ -3,25 +3,30 @@
     <div class="black_line"></div>
     <div id="main">
       <sidebar></sidebar>
-      <articleList></articleList>
+      <div class="ctn">
+      <aList></aList>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import sidebar from '@/views/home/sidebar'
-import articleList from '@/views/home/article'
+import aList from '@/views/home/articleList'
 
   export default {
     name: 'home',
     components: { 
     sidebar:sidebar,
-    articleList
+    aList
     },
   }
 </script>
 
 <style>
+.ctn{
+  float: right;
+}
   * {
     margin: 0;
     padding: 0;
@@ -152,6 +157,7 @@ import articleList from '@/views/home/article'
     width: 700px;
     float: left;
     background: white;
+    
   }
   
 </style>

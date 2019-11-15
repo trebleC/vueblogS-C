@@ -17,5 +17,16 @@ export default{
             data:articleMap
         })
     },
+    /**
+     * 上传图片
+     * */
+
+    uploadPic(file){
+        return request({
+            url: `/${api_name}/upload/files`,
+            method: 'post',
+            data:file
+        })
+    },
 
 }

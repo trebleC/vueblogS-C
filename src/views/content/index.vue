@@ -1,5 +1,10 @@
 <template>
     <div>
+
+        <div><articleSearch></articleSearch></div>
+
+        <div>
+        
         <el-tabs v-model="activeName" :stretch='true' @tab-click="handleClick" class="tabs">
             <el-tab-pane 
             v-model="type_options"
@@ -8,7 +13,6 @@
             :name="item.optName"
             :label="item.optLable"
             >
-            <articleSearch></articleSearch>
             </el-tab-pane>
             <!-- <el-tab-pane label="全部" name="all">全部</el-tab-pane>
             <el-tab-pane label="公开" name="open">公开</el-tab-pane>
@@ -18,6 +22,7 @@
             <el-tab-pane label="回收站" name="recycle">回收站</el-tab-pane> -->
         </el-tabs>
         <articleList :styleOptions="activeName"></articleList>
+        </div>
     </div>
 </template>
 
